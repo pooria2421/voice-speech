@@ -1,37 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Voice Speech
+
+A modern, responsive Text-to-Speech application built with **Next.js, React, TypeScript, and Tailwind CSS**.
+
+Convert written text into natural-sounding speech directly in your browser using the Web Speech API. Choose an available voice, customize speech settings, and listen to your text without requiring an external TTS service.
+
+## Features
+
+- **Text-to-Speech:** Convert written text into spoken audio.
+- **Multiple Languages:** Use available voices for different languages, including English and Persian.
+- **Voice Selection:** Choose from voices provided by your browser and operating system.
+- **Speech Controls:** Play, pause, resume, and stop speech.
+- **Adjustable Speed:** Customize the speech rate.
+- **Pitch Control:** Adjust the voice pitch.
+- **Responsive Interface:** Designed for desktop, tablet, and mobile devices.
+- **Browser-Based:** Speech synthesis runs locally through the browser's Web Speech API.
+- **No API Key Required:** No third-party TTS API or backend service is needed.
+
+## Tech Stack
+
+| Technology | Purpose |
+|---|---|
+| Next.js 16 | React framework |
+| React 19 | User interface |
+| TypeScript | Type safety |
+| Tailwind CSS 4 | Styling |
+| Web Speech API | Speech synthesis |
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+Make sure you have installed:
+
+- Node.js (compatible with your Next.js version)
+- npm
+
+### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/pooria2421/voice-speech.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd voice-speech
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Available Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command | Description |
+|---|---|
+| `npm run dev` | Start the development server |
+| `npm run build` | Build the production application |
+| `npm run start` | Start the production server |
+| `npm run lint` | Run ESLint |
 
-## Learn More
+## How It Works
 
-To learn more about Next.js, take a look at the following resources:
+Voice Speech uses the browser's built-in **SpeechSynthesis API**, part of the Web Speech API.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The application creates a `SpeechSynthesisUtterance` from the entered text and uses the browser's available speech voices to read it aloud.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+No audio-generation server is required.
 
-## Deploy on Vercel
+### Browser Compatibility
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Speech synthesis availability and voice quality depend on the browser and operating system.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-# voice-speech
+- Chrome
+- Microsoft Edge
+- Safari
+- Firefox (support and voice availability may vary)
+
+**Note:** Persian voice availability depends on the installed speech voices on your device. Not every browser or operating system provides a Persian voice by default.
+
+## Project Structure
+
+```text
+voice-speech/
+├── app/
+│   ├── globals.css
+│   ├── layout.tsx
+│   └── page.tsx
+├── components/
+│   └── voice-speech/
+├── public/
+├── package.json
+├── tsconfig.json
+└── README.md
+```
+
+## Limitations
+
+- Available languages and voices depend on the user's device.
+- Speech quality varies between browsers and operating systems.
+- The application uses browser-based speech synthesis rather than generating downloadable audio files.
+- Some browsers may require user interaction before speech playback starts.
+
+## Contributing
+
+Contributions, bug reports, and feature suggestions are welcome.
+
+1. Fork the repository.
+2. Create a feature branch.
+3. Commit your changes.
+4. Open a Pull Request.
+
+## License
+
+This project is open source. Add a license file to the repository if you want to specify the terms under which others can use, modify, and distribute the project.
+
+---
+
+**Developed by [Pooria Gohari](https://github.com/pooria2421)**
+
+[GitHub Repository](https://github.com/pooria2421/voice-speech)
