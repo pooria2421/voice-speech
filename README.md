@@ -1,105 +1,187 @@
-# 🔊 Text to Speech – Voice Speech
+# Text to Speech
 
-A lightweight, browser-based Text-to-Speech application that converts written text into spoken audio using the **Web Speech API**.
+A modern, responsive Text-to-Speech application built with **Next.js, React, TypeScript, and Tailwind CSS**.
 
-The application provides a simple and modern interface where users can enter text, select an available voice, adjust speech speed and pitch, and control audio playback.
+Convert written text into spoken audio directly in your browser using the Web Speech API. Choose from available system voices, adjust speaking speed and pitch, and control playback.
 
-## ✨ Features
+## Features
 
 - **Text to Speech:** Convert written text into spoken audio.
-- **Multiple Voices:** Select from voices available in your browser and operating system.
-- **Multilingual Support:** Support for multiple languages, including English and Persian (depending on available system voices).
-- **Speech Speed:** Adjust speaking speed from 0.5x to 2x.
-- **Voice Pitch:** Customize pitch from 0 to 2.
+- **Multiple Languages:** Use available browser voices for Persian, English, and other languages.
+- **Voice Selection:** Select from voices installed or provided by your browser.
+- **Speech Speed:** Adjust speaking speed from 0.5x to 2.0x.
+- **Pitch Control:** Adjust voice pitch from 0 to 2.
 - **Playback Controls:**
-  - ▶ Play – Start speech.
-  - ⏸ Pause – Pause speech.
-  - ■ Stop – Stop speech.
-- **Character Counter:** Display the number of characters entered.
-- **Responsive Design:** Works on desktop, tablet, and mobile devices.
-- **Dark UI:** Modern dark interface with Indigo accents.
+  - Play
+  - Pause
+  - Resume
+  - Stop
+- **Character Counter:** Display the current text length.
+- **Responsive Design:** Optimized for desktop, tablet, and mobile.
+- **Modern UI:** Dark interface powered by Tailwind CSS.
+- **Browser Support Detection:** Check whether the browser supports speech synthesis.
+- **Dynamic Voice Loading:** Automatically load available voices using the `voiceschanged` event.
 
-## 🛠️ Technologies
+## Tech Stack
 
-- HTML5
-- CSS / Tailwind CSS
-- Vanilla JavaScript
-- Web Speech API (`SpeechSynthesis`)
+- Next.js
+- React
+- TypeScript
+- Tailwind CSS
+- Web Speech API
+- SpeechSynthesis
+- SpeechSynthesisUtterance
+- useSyncExternalStore
 
-## 📁 Project Structure
+## Project Structure
 
 ```text
-voice-speech/
+text-to-speech/
+├── app/
+│   └── page.tsx
 │
-├── index.html
+├── components/
+│   └── VoiceSpeech.tsx
 │
-└── asset/
-    └── js/
-        └── file.js
+├── public/
+│
+├── package.json
+├── tsconfig.json
+└── README.md
 ```
 
-## 🚀 Getting Started
+## Installation
 
-### 1. Clone the Repository
+### 1. Clone the repository
 
 ```bash
-git clone https://github.com/USERNAME/voice-speech.git
+git clone https://github.com/your-username/text-to-speech.git
 ```
 
-### 2. Navigate to the Project
+### 2. Navigate to the project
 
 ```bash
-cd voice-speech
+cd text-to-speech
 ```
 
-### 3. Run the Application
+### 3. Install dependencies
 
-You can open `index.html` directly in your browser or use a local development server.
+```bash
+npm install
+```
 
-For example, with VS Code Live Server:
+### 4. Run the development server
 
-1. Open the project folder in VS Code.
-2. Install the Live Server extension.
-3. Right-click `index.html`.
-4. Select **Open with Live Server**.
+```bash
+npm run dev
+```
 
-## 🌍 Language Support
+### 5. Open the application
 
-The application uses voices provided by the browser and operating system.
+Visit:
 
-Available languages depend on installed speech synthesis voices.
+```text
+http://localhost:3000
+```
 
-For Persian speech, select a voice with the `fa-IR` language code if your system provides one.
+## Usage
 
-## 🔌 Browser Compatibility
+1. Enter your desired text in the text area.
+2. Select an available voice from the voice dropdown.
+3. Adjust the speech speed.
+4. Adjust the pitch.
+5. Click **Play** to start speaking.
+6. Use Pause, Resume, or Stop to control playback.
 
-The application relies on the browser's built-in Web Speech API.
+## Speech Settings
 
-Modern browsers such as Google Chrome, Microsoft Edge, and Safari support speech synthesis, although available voices and behavior may differ.
+| Setting | Description | Range |
+|---|---|---|
+| Speed | Controls how quickly the text is spoken | 0.5 – 2.0 |
+| Pitch | Controls the voice's pitch | 0 – 2 |
+| Voice | Selects an available browser voice | System dependent |
 
-## 🌐 Internet Requirements
+### Speed
 
-The application does not require a backend server or an external Text-to-Speech API.
+- 0.5: Slow speech
+- 1.0: Normal speech
+- 2.0: Fast speech
 
-- HTML, CSS, and JavaScript run locally.
-- Speech synthesis uses the browser's Web Speech API.
-- Tailwind CSS CDN requires an internet connection to load styling.
-- Some browser or operating-system voices may require additional downloads or online services.
+### Pitch
 
-## 📸 Interface
+- 0: Lowest pitch
+- 1: Normal pitch
+- 2: Highest pitch
 
-The interface includes:
+## Browser Compatibility
 
-1. Text input area.
-2. Voice selection dropdown.
-3. Speech speed and pitch controls.
-4. Playback buttons.
-5. Speech status indicator.
+The application uses the browser's native Web Speech API.
 
-## 📄 License
+Modern versions of the following browsers generally support speech synthesis:
 
-This project is open-source and available for personal and educational use.
+- Google Chrome
+- Microsoft Edge
+- Safari
+- Firefox
+
+Actual voice availability depends on the browser and operating system.
+
+## Persian Language Support
+
+Persian speech depends on the availability of a Persian voice on the user's device or browser.
+
+The application automatically prioritizes:
+1. Persian voices (`fa`)
+2. English voices (`en`)
+3. The first available system voice
+
+If no Persian voice is installed or provided by the browser, Persian speech may not work correctly.
+
+## Internet Requirements
+
+The application itself does not require an external translation API or cloud backend.
+
+However:
+
+- Locally installed voices can generally work offline.
+- Some browser-provided voices may require an internet connection.
+- Next.js development and production hosting have their own runtime requirements.
+
+## React Implementation
+
+The application uses `useSyncExternalStore` to detect browser speech synthesis support without using a state update inside `useEffect`.
+
+The `useEffect` hook is used to synchronize with the browser's external speech synthesis API and subscribe to voice changes.
+
+This helps avoid the React lint warning:
+
+```text
+Calling setState synchronously within an effect
+can trigger cascading renders
+```
+
+## Limitations
+
+- Available voices depend on the user's browser and operating system.
+- Natural-sounding Persian voices are not guaranteed.
+- Voice quality varies between devices.
+- The Web Speech API does not directly provide MP3 or WAV downloads.
+- Speech synthesis behavior may differ between browsers.
+
+## Future Improvements
+
+- Download generated speech as MP3.
+- Add more voice customization options.
+- Add text translation between languages.
+- Add voice previews.
+- Add text history and saved messages.
+- Integrate cloud-based AI voices.
+- Add more natural Persian voice generation.
+
+## License
+
+This project is available for personal and educational use. Add your preferred open-source license before distributing it.
 
 ---
 
-**Built with ❤️ using HTML, CSS, and JavaScript.**
+**Built with Next.js, TypeScript, Tailwind CSS, and Web Speech API.**
